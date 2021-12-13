@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<style>
+    *{
+        margin: 0;padding: 0;box-sizing: border-box;
+    }
+    body{
+        background-color: black;
+    }
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 50px auto;
+        flex-direction: row;
+        border: 1px solid greenyellow;
+    }
+    .bg{
+        width: 100px;
+        height: 500px;
+        border: 1px solid purple;
+        text-align: center;
+        line-height: 500px;
+        font-size: 1rem;
+        color: #e7a110;
+        flex-wrap: wrap;
+        margin-right: 10px;
+    }
+    /*.bgHoverClass{*/
+    /*    background-color:#5cbf2a;*/
+    /*    box-shadow: 0px 0px 33px 14px #3dc21b;*/
+    /*    text-shadow:0px 0px 0px #2f6627;*/
+    /*}*/
+    .section1{
+        display: inline-flex;
+        flex-direction: row;
+        margin: 50px auto;
+    }
+    .change{
+        border: 1px solid black;
+        width: 50px;
+        height: 50px;
+        background-color: red;
+        text-align: center;
+        line-height: 50px;
+    }
+    /*.bg:nth-child(2) */
+    .neon{
+        background-color:#44c767;
+        border:3px solid #18ab29;
+        display:inline-block;
+        cursor:pointer;
+        color:#ffffff;
+        font-family:Arial;
+        font-size:17px;
+        padding:15px 31px;
+        text-decoration:none;
+    }
+    .bg:nth-child(2):hover {
+        background-color:#5cbf2a;
+        box-shadow: 0px 0px 33px 14px #3dc21b;
+        text-shadow:0px 0px 0px #2f6627;
+    }
+    .bg:nth-child(2):hover body{
+        background-color: black !important;
+        z-index: 1000;
+    }
+    .bg:nth-child(2):active {
+        position:relative;
+        top:1px;
+    }
+
+</style>
+
+<section>
+    <div class="bg"></div>
+    <div class="bg neon"></div>
+    <div class="bg border"></div>
+    <div class="bg"></div>
+    <br>
+</section>
+
+<section class="section1">
+<!--    div color changer bottom will show here-->
+</section>
+
+<script>
+
+    const bg = document.querySelector(".bg");
+    const bgA = document.querySelector(".bg");
+    const change = document.querySelector('.change');
+    const section1 = document.querySelector('.section1');
+    const section = document.querySelector('section');
+
+
+    let bgColor = ['EE7752','E73C7E','23A6D5','23D5AB','eeeeee'];
+
+    // loop and print out div on browser with color box
+    for(let color in bgColor){
+        let v = bgColor[color];
+        console.log(v);
+
+        //div bottom are here
+        section1.innerHTML += `
+            <div id="btn" class="change" style="background-color: ${'#'+v}" onclick="btn('${v}')"></div>
+            `
+    };
+
+    function btn(el) {
+
+        // select all of div element in section by looping
+        let x = section.querySelectorAll(".bg");
+        let i;
+        for (i = 0; i < x.length; i++) {
+
+            let css = `.bg .bg:hover{box-shadow:0px 0px 33px 14px ${'#' + el};}`
+            x[0].style.cssText =
+                `
+                    background-color:${'#' + el};
+                    box-shadow: 0px 0px 33px 14px ${'#' + el};
+                    text-shadow:0px 0px 0px ${'#' + el};
+                    opacity: 1;
+                    // filter: blur(4px);
+            `;
+                x[1].style.cssText = `
+                    background-color:${'#' + el};
+                    // box-shadow: 0px 0px 33px 14px ${'#' + el};
+                    text-shadow:0px 0px 0px ${'#' + el};
+                    opacity: 1;
+                    // filter: blur(4px);
+                `;
+
+                x[1].style.cssText =  css ;
+                x[2].style.cssText =
+                `
+                    box-shadow: 0px 0px 33px 14px ${'#' + el};
+                    text-shadow:0px 0px 0px ${'#' + el};
+                    opacity: 1;
+                    // filter: blur(4px);
+                    border:3px solid ${'#'+el};
+            `;
+            x[3].style.cssText =
+                `
+                    box-shadow: 0px 0px 33px 14px ${'#' + el};
+                    text-shadow:0px 0px 0px ${'#' + el};
+                    opacity: 1;
+                    // filter: blur(4px);
+                    border:3px solid ${'#'+el};
+            `;
+        }
+    }
+
+
+
+
+
+    // function changeColor() {
+    //
+    //     const bg = document.querySelector(".bg");
+    //
+    //     console.log('change');
+    //
+    //     document.body.style.backgroundColor = 'blue'
+    // }
+    //
+    // change.addEventListener('click',changeColor);
+    //
+
+
+
+
+    // bg.addEventListener('click',function (el) {
+    //     this.style.background = '#'+'el';
+    //     console.log(this.style.background);
+    // });
+    // document.body.style.backgroundColor = 'rgb('Math.round(Math.random())'+','+'Math.round(Math.random())','Math.round(Math.random())';
+    //
+    // function changeColor() {
+    //     document.body.style.backgroundColor =
+    //         'rgb(' + Math.round(Math.random()*255)+
+    //         ',' + Math.round(Math.random()*255)+
+    //         ',' + Math.round(Math.random()*255) +')'}
+    //
+    // bg.addEventListener('click',changeColor)
+
+
+</script>
+</body>
+</html>
